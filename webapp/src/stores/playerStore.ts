@@ -1,40 +1,40 @@
-import { CellValue } from "../ultimateGame/types";
+import { CellValue } from "../game/types";
 import { derived, writable } from "svelte/store";
 import { game } from "./gameStore";
 import { debounce } from "../util/debounce";
 import { fetchGroupName } from "../util/fetchGroupName";
 
-export const xPlayer = writable("");
-export const oPlayer = writable("");
+export const firstPlayer = writable("");
+export const secondPlayer = writable("");
 
-const fetchXPlayerName = debounce(async (url, set) => {
+const fetchFirstPlayerName = debounce(async (url, set) => {
   const name = await fetchGroupName(url);
   set(name || "");
 }, 1000);
 
-export const xPlayerName = derived(
-  xPlayer,
-  ($xPlayer, set) => {
-    fetchXPlayerName($xPlayer, set);
+export const firstPlayerName = derived(
+  firstPlayer,
+  ($firstPlayer, set) => {
+    fetchFirstPlayerName($firstPlayer, set);
   },
   ""
 );
 
-const fetchOPlayerName = debounce(async (url, set) => {
+const fetchSecondPlayerName = debounce(async (url, set) => {
   const name = await fetchGroupName(url);
   set(name || "");
 }, 1000);
 
-export const oPlayerName = derived(
-  oPlayer,
-  ($oPlayer, set) => {
-    fetchOPlayerName($oPlayer, set);
+export const secondPlayerName = derived(
+  secondPlayer,
+  ($secondPlayer, set) => {
+    fetchSecondPlayerName($secondPlayer, set);
   },
   ""
 );
 
 export const currentPlayer = derived(
-  [game, xPlayer, oPlayer],
-  ([game, xPlayer, oPlayer]) =>
-    game.current === CellValue.X ? xPlayer : oPlayer
+  [game, firstPlayer, secondPlayer],
+  ([game, firstPlayer, secondPlayer]) =>
+    game.current === CellValue.FirstHalf ? firstPlayer : secondPlayer
 );

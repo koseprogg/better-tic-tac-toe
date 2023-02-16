@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { TicTacToe } from "./game/ticTacToe";
   import { CellValue } from "./game/types";
   import PlayerController from "./lib/PlayerController.svelte";
   import TicTacToeBoard from "./lib/TicTacToeBoard.svelte";
@@ -27,7 +26,7 @@
 
 <main>
   <header>
-    <h1>Tic Tac Toe</h1>
+    <h1>TickoaTTwo</h1>
   </header>
   {#if $game.winner !== CellValue.Empty}
     <div class="winner">

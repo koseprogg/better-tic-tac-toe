@@ -3,5 +3,7 @@ import { writable } from "svelte/store";
 import { TicTacToe } from "../game/ticTacToe";
 
 export const game = writable(
-  new TicTacToe(Math.random() < 0.5 ? CellValue.X : CellValue.O)
+  new TicTacToe(
+    Math.random() < 0.5 ? CellValue.FirstHalf : CellValue.SecondHalf
+  )
 );

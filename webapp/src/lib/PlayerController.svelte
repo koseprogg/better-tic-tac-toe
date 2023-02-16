@@ -1,9 +1,9 @@
 <script lang="ts">
   import {
-    xPlayer,
-    oPlayer,
-    xPlayerName,
-    oPlayerName,
+    firstPlayer,
+    secondPlayer,
+    firstPlayerName,
+    secondPlayerName,
     currentPlayer,
   } from "../stores/playerStore";
   import { game } from "../stores/gameStore";
@@ -37,22 +37,28 @@
 <div class="playerController">
   <h2>Players</h2>
   <div class="playerSelectors">
-    <div class="xPlayerSelector" class:active={$game.current === CellValue.X}>
+    <div
+      class="firstPlayerSelector"
+      class:active={$game.current === CellValue.FirstHalf}
+    >
       <h3>
-        X - Player {$xPlayer === "" ? "👨" : "🤖"}{$xPlayerName === ""
-          ? ""
-          : ": " + $xPlayerName}
+        {CellValue.FirstHalf} - Player {$firstPlayer === ""
+          ? "👨"
+          : "🤖"}{$firstPlayerName === "" ? "" : ": " + $firstPlayerName}
       </h3>
-      <input type="text" bind:value={$xPlayer} placeholder="URL" />
+      <input type="text" bind:value={$firstPlayer} placeholder="URL" />
     </div>
 
-    <div class="yPlayerSelector" class:active={$game.current === CellValue.O}>
+    <div
+      class="secondPlayerSelector"
+      class:active={$game.current === CellValue.SecondHalf}
+    >
       <h3>
-        O - Player {$oPlayer === "" ? "👨" : "🤖"}{$oPlayerName === ""
-          ? ""
-          : ": " + $oPlayerName}
+        {CellValue.SecondHalf} - Player {$secondPlayer === ""
+          ? "👨"
+          : "🤖"}{$secondPlayerName === "" ? "" : ": " + $secondPlayerName}
       </h3>
-      <input type="text" bind:value={$oPlayer} placeholder="URL" />
+      <input type="text" bind:value={$secondPlayer} placeholder="URL" />
     </div>
   </div>
   <button

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { CellValue, Move } from "../game/types";
+  import type { Move } from "../game/types";
   import type { MakeOptional } from "../util/makeOptional";
   import { game } from "../stores/gameStore";
-  import { currentPlayer, xPlayer } from "../stores/playerStore";
+  import { currentPlayer } from "../stores/playerStore";
   //create board object that is easy to use in svelte
   // It is a 3x3 array of 3x3 arrays (with a field for winner of the subBoard)
 

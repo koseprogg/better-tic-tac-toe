@@ -33,7 +33,9 @@ class TicTacToe {
     this.board.doMove({ ...move, player: this.currentPlayer });
     this.history.push({ ...move, player: this.currentPlayer });
     this.currentPlayer =
-      this.currentPlayer === CellValue.X ? CellValue.O : CellValue.X;
+      this.currentPlayer === CellValue.FirstHalf
+        ? CellValue.SecondHalf
+        : CellValue.FirstHalf;
   }
 
   getCell(x: number, y: number): CellValue {
@@ -43,12 +45,13 @@ class TicTacToe {
   restart(): void {
     this.board = new Board();
     this.history = [];
-    this.currentPlayer = Math.random() < 0.5 ? CellValue.X : CellValue.O;
+    this.currentPlayer =
+      Math.random() < 0.5 ? CellValue.FirstHalf : CellValue.SecondHalf;
   }
 
   get winner(): CellValue {
     // Return the winner of the entire board
-    return this.board.winner;
+    return this.board.hasWinner ? this.history.at(-1).player : CellValue.Empty;
   }
 
   get current(): PlayerPiece {
@@ -57,11 +60,9 @@ class TicTacToe {
 
   get legalMoves(): Move[] {
     // If the board has a winner, no moves are legal
-    if (this.board.winner !== CellValue.Empty) {
+    if (this.winner !== CellValue.Empty) {
       return [];
     }
-
-    // All empty cells are legal
 
     return Array(3 * 3)
       .fill(0)
@@ -72,7 +73,17 @@ class TicTacToe {
           player: this.currentPlayer,
         };
       })
-      .filter((move) => this.board.getCell(move.x, move.y) === CellValue.Empty);
+      .filter((move) => {
+        const cell = this.board.getCell(move.x, move.y);
+        //Cells where player has already placed is illegal
+        const alreadyPlaced =
+          cell === CellValue.Full || cell === this.currentPlayer;
+        //Cell played last move is illegal
+        const lastMove = this.history.at(-1);
+        const placedLastMove =
+          lastMove && lastMove.x === move.x && lastMove.y === move.y;
+        return !alreadyPlaced && !placedLastMove;
+      });
   }
 }
 

@@ -1,10 +1,11 @@
 enum CellValue {
   Empty = " ",
-  X = "X",
-  O = "O",
+  FirstHalf = "│",
+  SecondHalf = "─",
+  Full = "🞡",
 }
 
-type PlayerPiece = CellValue.X | CellValue.O;
+type PlayerPiece = CellValue.FirstHalf | CellValue.SecondHalf;
 
 //This represents a 9x9 board
 type Grid = CellValue[][];

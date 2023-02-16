@@ -15,7 +15,7 @@ class Board {
     }
   }
 
-  get winner(): CellValue {
+  get hasWinner(): boolean {
     //Calculate winner of a 3x3 board
     const winningCombinations = [
       //Horizontal
@@ -67,16 +67,16 @@ class Board {
       let [a, b, c] = combination;
 
       if (
-        this.board[a[0]][a[1]] !== CellValue.Empty &&
+        this.board[a[0]][a[1]] === CellValue.Full &&
         this.board[a[0]][a[1]] === this.board[b[0]][b[1]] &&
         this.board[a[0]][a[1]] === this.board[c[0]][c[1]]
       ) {
-        return this.board[a[0]][a[1]];
+        return true;
       }
     }
 
     //If no winner is found
-    return CellValue.Empty;
+    return false;
   }
 
   getCell(x: number, y: number): CellValue {
@@ -85,8 +85,16 @@ class Board {
 
   doMove(move: Move): void {
     // Place a value on the board
-
-    this.board[move.x][move.y] = move.player;
+    const prevValue = this.getCell(move.x, move.y);
+    if (
+      prevValue != move.player &&
+      prevValue != CellValue.Full &&
+      prevValue != CellValue.Empty
+    ) {
+      this.board[move.x][move.y] = CellValue.Full;
+    } else {
+      this.board[move.x][move.y] = move.player;
+    }
   }
 }
 
