@@ -13,8 +13,6 @@
   let waitingForResponse = false;
 
   const makeBotMove = async () => {
-    console.log(gameDataToBots($game));
-
     waitingForResponse = true;
     const response = await fetch($currentPlayer, {
       method: "POST",
@@ -42,9 +40,10 @@
       class:active={$game.current === CellValue.FirstHalf}
     >
       <h3>
-        {CellValue.FirstHalf} - Player {$firstPlayer === ""
-          ? "👨"
-          : "🤖"}{$firstPlayerName === "" ? "" : ": " + $firstPlayerName}
+        {CellValue.FirstHalf}
+        {$firstPlayer === "" ? "👨" : "🤖"}{$firstPlayerName === ""
+          ? ""
+          : ": " + $firstPlayerName}
       </h3>
       <input type="text" bind:value={$firstPlayer} placeholder="URL" />
     </div>
@@ -54,9 +53,10 @@
       class:active={$game.current === CellValue.SecondHalf}
     >
       <h3>
-        {CellValue.SecondHalf} - Player {$secondPlayer === ""
-          ? "👨"
-          : "🤖"}{$secondPlayerName === "" ? "" : ": " + $secondPlayerName}
+        {CellValue.SecondHalf}
+        {$secondPlayer === "" ? "👨" : "🤖"}{$secondPlayerName === ""
+          ? ""
+          : ": " + $secondPlayerName}
       </h3>
       <input type="text" bind:value={$secondPlayer} placeholder="URL" />
     </div>
