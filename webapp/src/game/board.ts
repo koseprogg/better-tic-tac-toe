@@ -7,10 +7,10 @@ class Board {
   constructor() {
     // Construct a 3x3 board of empty cells
     this.board = [];
-    for (let x = 0; x < 3; x++) {
+    for (let y = 0; y < 3; y++) {
       this.board.push([]);
-      for (let y = 0; y < 3; y++) {
-        this.board[x].push(CellValue.Empty);
+      for (let x = 0; x < 3; x++) {
+        this.board[y].push(CellValue.Empty);
       }
     }
   }
@@ -67,9 +67,9 @@ class Board {
       let [a, b, c] = combination;
 
       if (
-        this.board[a[0]][a[1]] === CellValue.Full &&
-        this.board[a[0]][a[1]] === this.board[b[0]][b[1]] &&
-        this.board[a[0]][a[1]] === this.board[c[0]][c[1]]
+        this.board[a[1]][a[0]] === CellValue.Full &&
+        this.board[a[1]][a[0]] === this.board[b[1]][b[0]] &&
+        this.board[a[1]][a[0]] === this.board[c[1]][c[0]]
       ) {
         return true;
       }
@@ -80,7 +80,7 @@ class Board {
   }
 
   getCell(x: number, y: number): CellValue {
-    return this.board[x][y];
+    return this.board[y][x];
   }
 
   doMove(move: Move): void {
@@ -91,9 +91,9 @@ class Board {
       prevValue != CellValue.Full &&
       prevValue != CellValue.Empty
     ) {
-      this.board[move.x][move.y] = CellValue.Full;
+      this.board[move.y][move.x] = CellValue.Full;
     } else {
-      this.board[move.x][move.y] = move.player;
+      this.board[move.y][move.x] = move.player;
     }
   }
 }

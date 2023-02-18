@@ -68,8 +68,8 @@ class TicTacToe {
       .fill(0)
       .map((_, i) => {
         return {
-          x: Math.floor(i / 3),
-          y: i % 3,
+          x: i % 3,
+          y: Math.floor(i / 3),
           player: this.currentPlayer,
         };
       })

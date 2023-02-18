@@ -16,10 +16,10 @@
   let board;
   game.subscribe((game) => {
     board = [];
-    for (let x = 0; x < 3; x++) {
+    for (let y = 0; y < 3; y++) {
       board.push([]);
-      for (let y = 0; y < 3; y++) {
-        board[x].push(game.getCell(x, y));
+      for (let x = 0; x < 3; x++) {
+        board[y].push(game.getCell(x, y));
       }
     }
   });
@@ -27,9 +27,9 @@
 
 <main>
   <div class="board">
-    {#each board as row, x}
+    {#each board as row, y}
       <div class="row">
-        {#each row as cell, y}
+        {#each row as cell, x}
           <div
             class="cell"
             class:clickable={$game.legalMoves.some(
