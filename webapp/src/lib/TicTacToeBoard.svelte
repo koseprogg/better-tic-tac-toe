@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Move } from "../game/types";
+  import { CellValue, type Move } from "../game/types";
   import type { MakeOptional } from "../util/makeOptional";
   import { game } from "../stores/gameStore";
   import { currentPlayer } from "../stores/playerStore";
@@ -41,7 +41,14 @@
                   throw new Error("Bot's turn");
                 }}
           >
-            {cell}
+            <svg width="30" height="30">
+              {#if cell === CellValue.FirstHalf || cell == CellValue.Full}
+                <rect width="6" height="30" x="12" style="fill:rgb(0,0,255)" />
+              {/if}
+              {#if cell === CellValue.SecondHalf || cell == CellValue.Full}
+                <rect width="30" height="6" y="12" style="fill:rgb(255,0,0)" />
+              {/if}
+            </svg>
           </div>
         {/each}
       </div>

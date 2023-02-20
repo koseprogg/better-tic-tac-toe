@@ -40,7 +40,9 @@
       class:active={$game.current === CellValue.FirstHalf}
     >
       <h3>
-        {CellValue.FirstHalf}
+        <svg width="30" height="30">
+          <rect width="6" height="30" x="12" style="fill:rgb(0,0,255)" />
+        </svg>
         {$firstPlayer === "" ? "👨" : "🤖"}{$firstPlayerName === ""
           ? ""
           : ": " + $firstPlayerName}
@@ -53,7 +55,9 @@
       class:active={$game.current === CellValue.SecondHalf}
     >
       <h3>
-        {CellValue.SecondHalf}
+        <svg width="30" height="30">
+          <rect width="30" height="6" y="12" style="fill:rgb(255,0,0)" />
+        </svg>
         {$secondPlayer === "" ? "👨" : "🤖"}{$secondPlayerName === ""
           ? ""
           : ": " + $secondPlayerName}
