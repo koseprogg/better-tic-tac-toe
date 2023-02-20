@@ -2,7 +2,6 @@ name: Deploy webapp
 
 on:
   push:
-  workflow_dipatch:
 
 env:
   ACCOUNT_ID: "859141738257"
