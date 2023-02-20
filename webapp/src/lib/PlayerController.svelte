@@ -9,6 +9,7 @@
   import { game } from "../stores/gameStore";
   import { CellValue, type Move } from "../game/types";
   import { gameDataToBots } from "../util/gameDataToBots";
+  import Cross from "./Cross.svelte";
 
   let waitingForResponse = false;
 
@@ -40,12 +41,12 @@
       class:active={$game.current === CellValue.FirstHalf}
     >
       <h3>
-        <svg width="30" height="30">
-          <rect width="6" height="30" x="12" style="fill:rgb(0,0,255)" />
-        </svg>
-        {$firstPlayer === "" ? "👨" : "🤖"}{$firstPlayerName === ""
-          ? ""
-          : ": " + $firstPlayerName}
+        <Cross value={CellValue.FirstHalf} />
+        {$firstPlayer === ""
+          ? Math.random() < 0.5
+            ? "👨"
+            : "👩"
+          : "🤖"}{$firstPlayerName === "" ? "" : ": " + $firstPlayerName}
       </h3>
       <input type="text" bind:value={$firstPlayer} placeholder="URL" />
     </div>
@@ -55,12 +56,12 @@
       class:active={$game.current === CellValue.SecondHalf}
     >
       <h3>
-        <svg width="30" height="30">
-          <rect width="30" height="6" y="12" style="fill:rgb(255,0,0)" />
-        </svg>
-        {$secondPlayer === "" ? "👨" : "🤖"}{$secondPlayerName === ""
-          ? ""
-          : ": " + $secondPlayerName}
+        <Cross value={CellValue.SecondHalf} />
+        {$secondPlayer === ""
+          ? Math.random() < 0.5
+            ? "👨"
+            : "👩"
+          : "🤖"}{$secondPlayerName === "" ? "" : ": " + $secondPlayerName}
       </h3>
       <input type="text" bind:value={$secondPlayer} placeholder="URL" />
     </div>

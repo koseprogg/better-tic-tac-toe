@@ -4,6 +4,7 @@
   import TicTacToeBoard from "./lib/TicTacToeBoard.svelte";
   import { game } from "./stores/gameStore";
   import JSConfetti from "js-confetti";
+  import Cross from "./lib/Cross.svelte";
 
   const jsConfetti = new JSConfetti();
 
@@ -30,7 +31,7 @@
   </header>
   {#if $game.winner !== CellValue.Empty}
     <div class="winner">
-      <h2>The winner is {$game.winner}!</h2>
+      <h2>The winner is <Cross value={$game.winner} />!</h2>
     </div>
   {/if}
   <TicTacToeBoard />
