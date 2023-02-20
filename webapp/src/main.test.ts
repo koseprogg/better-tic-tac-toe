@@ -9,5 +9,5 @@ import App from "./App.svelte";
 test("App renders", async () => {
   render(App);
   // if this goes trough, then app is rendered ...
-  const text = screen.getByText("Tic Tac Toe");
+  const text = screen.getByText("TickoaTTwo");
 });
