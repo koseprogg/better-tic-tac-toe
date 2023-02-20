@@ -7,7 +7,7 @@ on:
 env:
   ACCOUNT_ID: "859141738257"
   ARTIFACTS_BUCKET: "koseprogg-event-webapp-artifacts"
-  FUNCITON_NAME: "KoseproggInfraStackKosepr-KoseproggWebappDeployF99-HTb9UxvXUezu"
+  FUNCITON_NAME: "KoseproggInfraStackKosepr-KoseproggWebappDeployF99-Z9SFKeXmetI0"
 
 
 jobs:
