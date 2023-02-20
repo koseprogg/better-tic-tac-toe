@@ -1,8 +1,8 @@
 enum CellValue {
   Empty = " ",
-  FirstHalf = "│",
-  SecondHalf = "─",
-  Full = "🞡",
+  FirstHalf = "|",
+  SecondHalf = "-",
+  Full = "+",
 }
 
 type PlayerPiece = CellValue.FirstHalf | CellValue.SecondHalf;
