@@ -33,6 +33,10 @@ class WebappStack extends cdk.Stack {
           repo: "tic-tac-toe-webapp",
           // filter: "main",
         },
+        {
+          owner: "koseprogg",
+          repo: "better-tic-tac-toe"
+        }
       ],
       deploymentBucket: artifactsBucket,
     });

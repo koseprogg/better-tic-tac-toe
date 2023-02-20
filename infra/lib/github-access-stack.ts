@@ -71,7 +71,7 @@ class GithubAccessStack extends cdk.Stack {
     openidConnectRole.addToPolicy(
       new iam.PolicyStatement({
         resources: [
-          "arn:aws:lambda:eu-west-1:859141738257:function:KoseproggInfraStackKosepr-KoseproggWebappDeployF99-HTb9UxvXUezu",
+          "arn:aws:lambda:eu-west-1:859141738257:function:KoseproggInfraStackKosepr-KoseproggWebappDeployF99-Z9SFKeXmetI0",
         ],
         actions: ["lambda:InvokeFunction"],
       })
