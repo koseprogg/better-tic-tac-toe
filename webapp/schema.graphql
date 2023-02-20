@@ -1,0 +1,120 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Channel {
+  data: AWSJSON!
+  name: String!
+}
+
+type KoseproggLogs {
+  group: String!
+  log_events: String!
+  logid: String!
+}
+
+type KoseproggLogsConnection {
+  items: [KoseproggLogs]
+  nextToken: String
+}
+
+type Mutation {
+  createKoseproggLogs(input: CreateKoseproggLogsInput!): KoseproggLogs
+  deleteKoseproggLogs(input: DeleteKoseproggLogsInput!): KoseproggLogs
+  publish(data: AWSJSON!, name: String!): Channel
+  updateKoseproggLogs(input: UpdateKoseproggLogsInput!): KoseproggLogs
+}
+
+type Query {
+  getChannel: Channel
+  getKoseproggLogs(group: String!, logid: String!): KoseproggLogs
+  getKoseproggLogsByGroup(group: String!): KoseproggLogs
+  listKoseproggLogs(filter: TableKoseproggLogsFilterInput, limit: Int, nextToken: String): KoseproggLogsConnection
+}
+
+type Subscription {
+  onCreateKoseproggLogs(group: String, log_events: String, logid: String): KoseproggLogs @aws_subscribe(mutations : ["createKoseproggLogs"])
+  onDeleteKoseproggLogs(group: String, log_events: String, logid: String): KoseproggLogs @aws_subscribe(mutations : ["deleteKoseproggLogs"])
+  onUpdateKoseproggLogs(group: String, log_events: String, logid: String): KoseproggLogs @aws_subscribe(mutations : ["updateKoseproggLogs"])
+  subscribe(name: String!): Channel @aws_subscribe(mutations : ["publish"])
+}
+
+input CreateKoseproggLogsInput {
+  group: String!
+  log_events: String!
+  logid: String!
+}
+
+input DeleteKoseproggLogsInput {
+  group: String!
+  logid: String!
+}
+
+input TableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input TableFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input TableIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input TableIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input TableKoseproggLogsFilterInput {
+  group: TableStringFilterInput
+  log_events: TableStringFilterInput
+  logid: TableStringFilterInput
+}
+
+input TableStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input UpdateKoseproggLogsInput {
+  group: String!
+  log_events: String
+  logid: String!
+}
