@@ -5,6 +5,10 @@
   import { game } from "./stores/gameStore";
   import JSConfetti from "js-confetti";
   import Cross from "./lib/Cross.svelte";
+  import { get } from "./util/errorLogAPI";
+  import { firstPlayerGroup } from "./stores/playerStore";
+  import LogWindow from "./lib/LogWindow.svelte";
+  import { logWindowOpen } from "./stores/logStore";
 
   const jsConfetti = new JSConfetti();
 
@@ -23,6 +27,10 @@
       return gm;
     });
   };
+
+  const printErr = async () => {
+    console.log("Hello");
+  };
 </script>
 
 <main>
@@ -37,7 +45,13 @@
   <TicTacToeBoard />
   <PlayerController />
   <button on:click={restartGame}> Restart </button>
+  <LogWindow />
 </main>
+<div>
+  <button id="log-button" on:click={() => logWindowOpen.set(true)}
+    >Read lambda logs</button
+  >
+</div>
 
 <style>
   button {
@@ -47,5 +61,10 @@
   }
   main {
     text-align: center;
+  }
+  #log-button {
+    position: fixed;
+    left: 0;
+    bottom: 0;
   }
 </style>
