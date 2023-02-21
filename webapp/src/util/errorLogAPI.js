@@ -12,7 +12,7 @@ API.configure(config);
 
 export const getLogs = /* GraphQL */ `
   query MyQuery($group: String!) {
-    listKoseproggLogs(filter: { group: { eq: $group } }) {
+    listKoseproggLogs(filter: { group: { eq: $group } }, limit: 2000) {
       nextToken
       items {
         group

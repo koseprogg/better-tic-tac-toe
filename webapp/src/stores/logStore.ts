@@ -9,7 +9,7 @@ export const firstPlayerLog = derived(
   ([$logWindowOpen, $firstPlayerGroup], set) => {
     (async () => {
       const info = await get($firstPlayerGroup);
-      set(info.data.listKoseproggLogs.items.map((item) => item.log_events));
+      set([...info.data.listKoseproggLogs.items].reverse().map((item) => item.log_events));
     })();
   },
   []
